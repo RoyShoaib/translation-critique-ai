@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  translation-critique-ai:
+    build: .
+    container_name: translation-critique-ai
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - FLASK_PORT=5000
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
