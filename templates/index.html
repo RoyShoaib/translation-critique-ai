@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ترجمے کی تنقیدی جائزہ - AI تنقید کار</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 ترجمے کی تنقیدی جائزہ</h1>
+            <p class="subtitle">Google Gemini کی مدد سے ترجمے کا تجزیہ</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <div class="input-group">
+                    <label for="english-text">
+                        <span class="label-icon">🇬🇧</span>
+                        انگریزی متن
+                    </label>
+                    <textarea 
+                        id="english-text" 
+                        placeholder="انگریزی متن داخل کریں..."
+                        rows="6"
+                    ></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="urdu-translation">
+                        <span class="label-icon">🇵🇰</span>
+                        اردو ترجمہ
+                    </label>
+                    <textarea 
+                        id="urdu-translation" 
+                        placeholder="اردو ترجمہ داخل کریں..."
+                        rows="6"
+                    ></textarea>
+                </div>
+
+                <button id="analyze-btn" class="btn btn-primary">
+                    <span class="btn-icon">✨</span>
+                    تنقیدی جائزہ شروع کریں
+                </button>
+            </section>
+
+            <section id="results-section" class="results-section" style="display: none;">
+                <div class="loading" id="loading-indicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>AI تنقیدی جائزہ تیار کر رہا ہے...</p>
+                </div>
+
+                <div id="results-content">
+                    <!-- Translation Type -->
+                    <div class="result-card">
+                        <h3>ترجمے کی قسم</h3>
+                        <div class="translation-type">
+                            <span id="type-name" class="type-badge"></span>
+                            <p id="type-description" class="type-desc"></p>
+                        </div>
+                    </div>
+
+                    <!-- Scores -->
+                    <div class="result-card">
+                        <h3>درستگی اور روانی کے نمرات</h3>
+                        <div class="scores-grid">
+                            <div class="score-item">
+                                <div class="score-label">درستگی (Accuracy)</div>
+                                <div class="score-bar">
+                                    <div id="accuracy-bar" class="score-progress"></div>
+                                </div>
+                                <div id="accuracy-score" class="score-number">0/100</div>
+                            </div>
+                            <div class="score-item">
+                                <div class="score-label">روانی (Fluency)</div>
+                                <div class="score-bar">
+                                    <div id="fluency-bar" class="score-progress"></div>
+                                </div>
+                                <div id="fluency-score" class="score-number">0/100</div>
+                            </div>
+                        </div>
+                        <div class="cultural-adaptation">
+                            <strong>ثقافتی موافقت:</strong>
+                            <span id="cultural-adapt"></span>
+                        </div>
+                    </div>
+
+                    <!-- Strengths -->
+                    <div class="result-card strengths-card">
+                        <h3>💪 طاقتیں</h3>
+                        <ul id="strengths-list"></ul>
+                    </div>
+
+                    <!-- Weaknesses -->
+                    <div class="result-card weaknesses-card">
+                        <h3>⚠️ کمزوریاں</h3>
+                        <ul id="weaknesses-list"></ul>
+                    </div>
+
+                    <!-- Improvements -->
+                    <div class="result-card improvements-card">
+                        <h3>🔧 بہتری کی تجاویز</h3>
+                        <ul id="improvements-list"></ul>
+                    </div>
+
+                    <!-- Detailed Analysis -->
+                    <div class="result-card analysis-card">
+                        <h3>📊 تفصیلی تنقیدی جائزہ</h3>
+                        <div id="detailed-analysis" class="analysis-text"></div>
+                    </div>
+
+                    <!-- Word Choice Analysis -->
+                    <div class="result-card">
+                        <h3>📝 الفاظ کے انتخاب کی تفصیل</h3>
+                        <div id="word-choice" class="analysis-text"></div>
+                    </div>
+
+                    <!-- Grammar Review -->
+                    <div class="result-card">
+                        <h3>✏️ گرائمر کے مسائل</h3>
+                        <div id="grammar-review" class="analysis-text"></div>
+                    </div>
+                </div>
+
+                <button id="new-analysis-btn" class="btn btn-secondary">
+                    نیا تنقیدی جائزہ
+                </button>
+            </section>
+
+            <div id="error-message" class="error-message" style="display: none;"></div>
+        </main>
+
+        <footer>
+            <p>طاقت سے کام: Google Gemini AI | بنایا: RoyShoaib</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
